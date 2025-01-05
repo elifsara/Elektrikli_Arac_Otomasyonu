@@ -68,7 +68,8 @@ Elektrikli Araç Otomasyonu veri tabanı projesinin gereksinim detayları aşağ
 ### E-R Diyagramı
 
 Projenin E-R diyagramını gösteren görsel:
-![Elektrikli Araç Otomasyonu E-R Diyagramı](https://github.com/user-attachments/assets/3343f9b8-913a-41e5-89df-df081059cb97)
+![Elektrikli Araç Otomasyonu E-R Diyagramı](https://github.com/user-attachments/assets/c5fd663e-77fe-4318-9e88-63befd0b7f4f)
+
 
 ---
 

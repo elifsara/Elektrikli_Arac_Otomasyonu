@@ -790,3 +790,38 @@ BEGIN
     END
 END;
 
+
+
+--BAZI SORGU ÖRNEKLERÝ
+
+--Bir aracýn kilometre durumu 40000 km'nin üzerinde olan tüm sürüþ geçmiþlerini listele.
+SELECT S.SurusID, S.PilKullanimi, S.Sure, S.BaslangicKm, S.BitisKm
+FROM SurusGecmisiTB S
+JOIN AracTB A ON S.AracID = A.AracID
+WHERE A.KM > 40000;
+
+--Bir fatura üzerinde en yüksek tutarý ödeyen müþteri bilgileri.
+SELECT M.AdSoyad, F.Tutar
+FROM FaturaTB F
+JOIN MusteriTB M ON F.MusteriID = M.MusteriID
+WHERE F.Tutar = (SELECT MAX(Tutar) FROM FaturaTB);
+
+
+--Tüm þarj istasyonlarýnýn bakýmlarý yapýlmýþ olanlarýný ve bakým tarihini listele.
+SELECT I.Adres, I.Kapasite, I.SonBakim
+FROM SarjIstasyonuTB I
+WHERE I.MevcutDurum = 1 AND I.SonBakim IS NOT NULL;
+
+
+--En son bakým tarihinden 6 aydan daha eski bakýmlarý olan araçlarý listele.
+SELECT A.Marka, A.Model, A.SonBakim
+FROM AracTB A
+WHERE A.SonBakim < DATEADD(MONTH, -6, GETDATE());
+
+
+--Her müþterinin toplam bakiye harcamasýný ve buna karþýlýk gelen faturalarýn toplamýný listele.
+SELECT M.AdSoyad, SUM(F.Tutar) AS ToplamHarcama
+FROM MusteriTB M
+JOIN FaturaTB F ON M.MusteriID = F.MusteriID
+GROUP BY M.MusteriID, M.AdSoyad;
+
